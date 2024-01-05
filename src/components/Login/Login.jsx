@@ -7,6 +7,7 @@ const Login = () => {
     const {logIn} = useContext(AuthContext);
     const [error,setError] = useState('')
     const location = useLocation();
+    const from = location.state?.from?.pathname;
     const navigate = useNavigate();
     const handleLogin = event => {
         event.preventDefault();
@@ -18,7 +19,7 @@ const Login = () => {
         .then(result => {
             // console.log("logged in successfully" );
             form.reset();
-            navigate('/')
+            navigate(from,{replace:true});
         })
         .catch(error =>{
             setError(error.message)
